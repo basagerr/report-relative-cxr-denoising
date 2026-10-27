@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "Beyond Reference Fidelity: Report-Relative Evaluation of Self-Supervised Chest-Radiograph Denoising"
+type: software
+authors:
+  - family-names: "Basager"
+    given-names: "Raghed"
+  - family-names: "Lawson"
+    given-names: "Daniel"
+  - family-names: "Ke"
+    given-names: "Rihuan"
+license: GPL-3.0-only
+# TODO after creating the GitHub repository: repository-code: "https://github.com/<owner>/<repo>"
+keywords:
+  - self-supervised denoising
+  - chest radiography
+  - Noise2Void
+  - vision-language models
+  - MIMIC-CXR
+preferred-citation:
+  type: conference-paper
+  title: "Beyond Reference Fidelity: Report-Relative Evaluation of Self-Supervised Chest-Radiograph Denoising"
+  authors:
+    - family-names: "Basager"
+      given-names: "Raghed"
+    - family-names: "Lawson"
+      given-names: "Daniel"
+    - family-names: "Ke"
+      given-names: "Rihuan"
+  collection-title: "BMVC 2026 Workshop on Multimodal Foundation Models for Healthcare: Methods and Applications (MFM4Health)"
+  conference:
+    name: "37th British Machine Vision Conference (BMVC 2026)"
+    city: "Lancaster"
+    country: "GB"
+    date-start: "2026-11-23"
+    date-end: "2026-11-26"
+  year: 2026
+  # TODO: add pages, publisher and DOI/URL only once the workshop proceedings are published.

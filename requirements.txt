@@ -1,0 +1,15 @@
+# Runtime dependencies (CPU or CUDA); lower bounds reflect APIs the code uses. Install PyTorch first for your platform,
+# following https://pytorch.org/get-started/locally/ , then: pip install -r requirements.txt
+# Versions observed in the original GH200 environment are in requirements-gh200.txt.
+torch>=2.5
+torchvision>=0.20
+numpy>=2.0
+pandas>=2.0
+Pillow>=10.0
+tqdm>=4.66
+torchxrayvision==1.4.0
+lpips==0.1.4
+pytorch-msssim==1.0.0
+hi-ml-multimodal==0.2.2
+transformers>=4.40   # RAD-DINO encoder (optional dense-feature/independent metric)
+pytest>=7.4          # tests

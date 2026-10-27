@@ -1,0 +1,15 @@
+# Package versions observed in the original training/evaluation environment
+# (Python 3.11, NVIDIA GH200, CUDA 12.6). The +cu126 builds come from the
+# PyTorch package index, not PyPI; they are recorded here for provenance and
+# are not intended to be installed as-is on other platforms.
+torch==2.11.0+cu126
+torchvision==0.26.0+cu126
+numpy==2.4.4
+pandas==3.0.2
+Pillow==12.2.0
+tqdm==4.67.3
+torchxrayvision==1.4.0
+lpips==0.1.4
+pytorch-msssim==1.0.0
+hi-ml-multimodal==0.2.2
+# transformers: version not recorded in the original requirements file

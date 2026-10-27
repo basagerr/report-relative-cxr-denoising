@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+jupyterenv/
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*
+*secrets*
+
+# Protected medical data
+data/
+datasets/
+mimic*/
+**/mimic*/
+*.dcm
+*.dicom
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.nii
+*.nii.gz
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+checkpoints/
+weights/
+
+# MIMIC-CXR report files and directory layout (files/p1x/p1xxxxxxx/sxxxxxxxx.txt)
+files/
+p1[0-9]/
+s[0-9]*.txt
+*.txt
+!requirements*.txt
+
+# Private publication records: manifests, freeze records, locks and caches
+*manifest*
+*freeze*
+*content_lock*
+final_holdout_*
+publication_sweep/
+outputs_*/
+*.json
+!.zenodo.json
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.xlsx
+*.xls
+*.log
+*.out
+*.err
+
+# Private experiment outputs
+results/
+outputs/
+runs/
+logs/
+wandb/
+tensorboard/
+*.csv
+*.parquet
+*.jsonl
+*.gz
+
+# Notebooks and temporary files
+.ipynb_checkpoints/
+*.ipynb
+*.bak
+*.tmp
+*backup*
+*before_*
+
+# Editor and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

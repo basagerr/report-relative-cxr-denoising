@@ -10,7 +10,7 @@ authors:
   - family-names: "Ke"
     given-names: "Rihuan"
 license: GPL-3.0-only
-# TODO after creating the GitHub repository: repository-code: "https://github.com/<owner>/<repo>"
+repository-code: "https://github.com/basagerr/report-relative-cxr-denoising"
 keywords:
   - self-supervised denoising
   - chest radiography

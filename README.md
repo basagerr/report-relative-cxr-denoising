@@ -75,6 +75,8 @@ The selected configuration of the paper is given in `src/published.py`.
 GPL-3.0; see [LICENSE](LICENSE). The U-Net in `src/model.py` is adapted from
 [Pytorch-UNet](https://github.com/milesial/Pytorch-UNet) (GPL-3.0).
 
+For third-party software, model and dataset notices, see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Acknowledgements
 
 We thank the authors of MIMIC-CXR, BioViL-T (hi-ml-multimodal), TorchXRayVision,

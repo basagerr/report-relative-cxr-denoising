@@ -89,5 +89,7 @@ S. McIntosh-Smith, S. R. Alam and C. Woods. Isambard-AI: a leadership class
 supercomputer optimised specifically for Artificial Intelligence. arXiv:2410.11199, 2024.
 https://arxiv.org/abs/2410.11199
 
+R. Basager is supported by a PhD scholarship from Imam Abdulrahman Bin Faisal University, Saudi Arabia.
+
 We thank the authors of MIMIC-CXR, BioViL-T (hi-ml-multimodal), TorchXRayVision,
 RAD-DINO, LPIPS and Pytorch-UNet.

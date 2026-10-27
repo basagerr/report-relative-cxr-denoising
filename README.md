@@ -79,5 +79,15 @@ For third-party software, model and dataset notices, see [THIRD_PARTY_NOTICES.md
 
 ## Acknowledgements
 
+The authors acknowledge the use of resources provided by the Isambard-AI National AI
+Research Resource (AIRR). Isambard-AI is operated by the University of Bristol and is
+funded by the UK Government's Department for Business, Innovation, Science and Trade
+(DBIST) via UK Research and Innovation; and the Science and Technology Facilities
+Council [ST/AIRR/I-A-I/1023].
+
+S. McIntosh-Smith, S. R. Alam and C. Woods. Isambard-AI: a leadership class
+supercomputer optimised specifically for Artificial Intelligence. arXiv:2410.11199, 2024.
+https://arxiv.org/abs/2410.11199
+
 We thank the authors of MIMIC-CXR, BioViL-T (hi-ml-multimodal), TorchXRayVision,
 RAD-DINO, LPIPS and Pytorch-UNet.

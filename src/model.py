@@ -10,7 +10,7 @@ are adapted from Pytorch-UNet by milesial and contributors,
 https://github.com/milesial/Pytorch-UNet (``unet/unet_parts.py`` and
 ``unet/unet_model.py``), licensed under the GNU General Public License v3.0.
 
-Modifications made for this work:
+Modifications made for this work (2026):
 
 * BatchNorm2d replaced by GroupNorm (up to 8 groups per layer);
 * optional Dropout2d between the two convolutions of each block (p = 0.1);

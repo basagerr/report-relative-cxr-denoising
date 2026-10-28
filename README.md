@@ -19,10 +19,128 @@ pip install -r requirements.txt
 
 ## Data
 
-The experiments use [MIMIC-CXR-JPG](https://physionet.org/content/mimic-cxr-jpg/) and
-[MIMIC-CXR](https://physionet.org/content/mimic-cxr/) reports, which require credentialed
-access through PhysioNet. No data, data-derived files or trained checkpoints are included
-in this repository.
+The experiments use [MIMIC-CXR-JPG v2.1.0](https://physionet.org/content/mimic-cxr-jpg/2.1.0/)
+images and [MIMIC-CXR v2.0.0](https://physionet.org/content/mimic-cxr/2.0.0/)
+free-text radiology reports. Both require credentialed PhysioNet
+access and compliance with the applicable data use agreements.
+
+No patient images, reports, patient-level manifests, evaluation
+outputs or trained checkpoints are distributed in this repository.
+
+### Preparing the private data directory
+
+Download the JPG images, `mimic-cxr-2.0.0-split.csv.gz` and
+`mimic-cxr-2.0.0-metadata.csv.gz` from MIMIC-CXR-JPG, and the
+corresponding report text files from MIMIC-CXR.
+
+Preserve this directory structure outside the Git repository:
+
+```text
+<data-dir>/files/pXX/p<subject_id>/s<study_id>/<dicom_id>.jpg
+<data-dir>/files/pXX/p<subject_id>/s<study_id>.txt
+```
+
+These are placeholders, not actual patient or study identifiers.
+`pXX` is the patient-prefix directory. The report belongs to a
+study and may correspond to multiple images. The metadata index
+provides `ViewPosition` for identifying AP/PA images.
+
+### Loading development data
+
+`src/dataset.py` defines `MIMICCXRDataset`, which accepts a
+preconstructed pandas DataFrame with one row per image and these
+columns:
+
+- `subject_id`: patient identifier
+- `study_id`: study identifier
+- `dicom_id`: image identifier
+- `path`: local JPG image path
+- `text`: full report text for the corresponding study
+
+For an already prepared private development table, run from
+the repository root:
+
+```python
+import pandas as pd
+from src.config import Config
+from src.dataset import MIMICCXRDataset
+
+training = pd.read_csv("<private-training-table>.csv")
+train_dataset = MIMICCXRDataset(training, Config(), split="train")
+```
+
+Use a separate patient-disjoint validation table with
+`split="val"`. The loader reads the JPG image and returns the
+report text. The BioViL-T wrapper applies `src/report_utils.py`,
+preferring Impression, then Findings, with a 100-word limit.
+
+The development cohort and patient-disjoint splitting protocol
+are described in Section 4.1 of the paper. The original notebook
+workflow used to construct these tables is not included here.
+
+### Locked holdout evaluation
+
+`scripts/run_one_seed.py` uses `src/final_data.py` to read
+two private CSV manifests:
+
+- `final_holdout_eligible_manifest.csv` requires `subject_id`,
+  `study_id`, `dicom_id`, `relative_path`, `report_sha256`.
+- `final_holdout_candidate_manifest.csv` requires `subject_id`,
+  `study_id`, `dicom_id`, `report_relative_path`, `ViewPosition`,
+  `split`.
+
+These are the columns consumed by the loader, rather than a
+complete specification of the original manifest files.
+
+The manifests are joined on (`subject_id`, `study_id`, `dicom_id`).
+The image and report paths are resolved under `<data-dir>`;
+absolute paths and paths escaping that directory are rejected.
+
+The locked evaluation expects 204 images from 204 distinct
+patients, selected from the official test split with AP/PA views
+and disjoint from development.
+
+The loader verifies the SHA-256 of each report, computes image
+SHA-256 values and verifies the combined manifest content
+against `content_hash` in `final_holdout_eligible_meta.json`.
+
+### Private evaluation inputs
+
+The `--publication-dir` argument in the Usage command expects:
+
+```text
+<publication-dir>/
+  final_holdout_eligible_manifest.csv
+  final_holdout_candidate_manifest.csv
+  final_holdout_eligible_meta.json
+  publication_sweep/
+    publication_freeze.json
+    references/
+      ref_noise2noise_seed<seed>/
+        completed.json
+        checkpoints/best.pt
+      ref_supervised_seed<seed>/
+        completed.json
+        checkpoints/best.pt
+```
+
+The private freeze record also identifies the proposed and
+N2V-baseline checkpoint paths. Evaluation seeds are 7, 42
+and 123.
+
+### Reproducibility scope
+
+The repository contains model components, data loaders,
+evaluation code and tests. It does not include the original
+notebook workflow used to construct the development and
+locked-holdout manifests, the reference-model training driver,
+the private freeze records or the trained checkpoints.
+
+Therefore, the public code alone is not sufficient to reproduce
+the exact published experiments from raw PhysioNet downloads.
+
+Keep credentialed data, patient-level manifests, checkpoints
+and evaluation outputs outside the Git repository.
 
 ## Usage
 
